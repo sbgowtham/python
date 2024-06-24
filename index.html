@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Store</title>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+
+    <h2>Add a Product</h2>
+    <form action="/api/add" method="post">
+
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <button type="submit">Add to Cart</button>
+    </form>
+
+    <h2>Cart Items</h2>
+    <ul>
+        {% for product in cart %}
+            <li>
+                {{ product.name }}
+                <form action="/api/delete/{{ product.name }}" method="post" style="display:inline;">
+                    <button type="submit">Remove</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
